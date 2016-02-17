@@ -4,7 +4,7 @@ var TodoStore = require('./stores/todo_store');
 var TodoListItem = React.createClass ({
 
     handleDestroy: function(){
-      TodoStore.destroy();
+      TodoStore.destroy(this.props.todoItem.id);
     },
 
     render: function () {
