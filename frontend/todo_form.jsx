@@ -16,18 +16,33 @@ var TodoForm = React.createClass({
 
   createTodo: function(e){
     e.preventDefault();
-    TodoStore.create()
+    var newTodo = {
+      todo: {title: this.state.title, body: this.state.body}
+    };
+
+    TodoStore.create(newTodo);
+
+    this.setState({
+      title: '',
+      body: ''
+    });
 
   },
 
   render: function () {
     return (
-      <form>
-          Title
-          <input onChange={this.updateTitle} value={this.state.title} />
-          Body
-          <input onChange={this.updateBody} value={this.state.body} />
-          <input onSubmit={this.createTodo} type="submit" value="Create new task"/>
+      <form onSubmit={this.createTodo}>
+          Title:
+          <input onChange={this.updateTitle}
+                 value={this.state.title} />
+               Body:
+          <input
+            onChange={this.updateBody}
+            value={this.state.body} />
+
+          <input onSubmit={this.createTodo}
+                 type="submit"
+                 value="Create new task"/>
         </form>
     );
   }
